@@ -305,6 +305,7 @@ class VehicleStorageI<T extends Vehicle> implements VehicleStorage<T> {
         this._vehicles.push(vehicles);
     }
 }
+
 const owner1 = new OwnerI("Иванов", "Иван", "Иванович", new Date("1990-05-15"), TypeDocument.Passport, "1234", "567890");
 const owner2 = new OwnerI("Петров", "Петр", "Петрович", new Date("1985-10-20"), TypeDocument.DrivingLicense, "7777", "123456");
 const owner3 = new OwnerI("Александров", "Александр", "Александрович", new Date("2000-05-11"), TypeDocument.IdCard, "6312", "100503");
