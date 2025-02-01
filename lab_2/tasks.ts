@@ -1,3 +1,8 @@
+/*
+ * Задание 1.
+ * 1) Реализовать метод, возвращающий минимальное
+ *    число из массива вещественных чисел
+ */
 let a: number[] = [5.2, 1.1, 8.7, 2.9, 0.5];
 
 function minElement(a: number[]): number {
@@ -13,6 +18,10 @@ function minElement(a: number[]): number {
 const result: number = minElement(a);
 console.log(result);
 
+/* 
+ * 2) Реализовать метод, возвращающий количество
+ *    нулевых значений в матрице целых чисел
+ */
 let matrix: number[][] = [
     [0, 2, 3],
     [4, 0, 6],
@@ -34,6 +43,12 @@ function zeroElements(matrix: number[][]): number {
 const result1: number = zeroElements(matrix);
 console.log(result1);
 
+/*
+ * Задание 2.
+ * Создайте кортеж, который может содержать только 3
+ * строковых значения. Реализуйте метод, возвращающий
+ * конкатенацию этих строковых значений.
+ */ 
 const tuple: [string, string, string] = ['JavaScript', 'TypeScript', 'Tuple'];
 
 const concatenate = (tuple: [string, string, string]) => {
@@ -43,6 +58,12 @@ const concatenate = (tuple: [string, string, string]) => {
 const result2: string = concatenate(tuple);
 console.log(result2);
 
+/*
+ * Задание 3.
+ * Создайте тип перечисление для типов принтеров
+ * (струйный, лазерный и т.д.). Выведите какой-либо тип принтера в
+ * консоль.
+ */ 
 enum PrinterEnum {
     PRINTER_1 = 'matrix',
     PRINTER_2 = 'inkjet',
@@ -52,6 +73,12 @@ enum PrinterEnum {
 
 console.log(PrinterEnum.PRINTER_2);
 
+/*
+ * Задание 4.
+ * Реализуйте метод, который будет выводить информацию в
+ * консоль о создаваемом объекте типа Cat или Dog, применяя
+ * обобщенный тип, ограниченный типом Pet.
+ */ 
 class Pet {
     name: string = 'Some pet'
     age: number = -1
@@ -93,7 +120,16 @@ const cat = new Cat();
 const result4 = petInfo(cat);
 console.log(result4);
 
-
+/* 
+ * Задание 5.
+ * Создайте тип с применением перечисления из 3го задания (для
+ * использования его в качестве типа поля, для некоторых случаев
+ * возможно его использование при реализации массива). Добавьте
+ * собственные поля стандартных типов, корректно характеризующие ту
+ * или иную предметную область, совпадающую с вашим типом
+ * перечисления. Создайте объект на основе вашего типа и выведите его в
+ * консоль в формате JSON.
+ */
 type Printer = {
     model: string;
     manufacturer: string;
