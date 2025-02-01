@@ -1,3 +1,8 @@
+/*
+ * Задание 1.
+ * 1) Реализовать метод, возвращающий минимальное
+ *    число из массива вещественных чисел
+ */
 let a = [5.2, 1.1, 8.7, 2.9, 0.5];
 function minElement(a) {
     let min = a[0];
@@ -10,6 +15,10 @@ function minElement(a) {
 }
 const result = minElement(a);
 console.log(result);
+/*
+ * 2) Реализовать метод, возвращающий количество
+ *    нулевых значений в матрице целых чисел
+ */
 let matrix = [
     [0, 2, 3],
     [4, 0, 6],
@@ -28,12 +37,24 @@ function zeroElements(matrix) {
 }
 const result1 = zeroElements(matrix);
 console.log(result1);
+/*
+ * Задание 2.
+ * Создайте кортеж, который может содержать только 3
+ * строковых значения. Реализуйте метод, возвращающий
+ * конкатенацию этих строковых значений.
+ */
 const tuple = ['JavaScript', 'TypeScript', 'Tuple'];
 const concatenate = (tuple) => {
     return tuple[0] + ' ' + tuple[1] + ' ' + tuple[2];
 };
 const result2 = concatenate(tuple);
 console.log(result2);
+/*
+ * Задание 3.
+ * Создайте тип перечисление для типов принтеров
+ * (струйный, лазерный и т.д.). Выведите какой-либо тип принтера в
+ * консоль.
+ */
 var PrinterEnum;
 (function (PrinterEnum) {
     PrinterEnum["PRINTER_1"] = "matrix";
@@ -42,6 +63,12 @@ var PrinterEnum;
     PrinterEnum["PRINTER_4"] = "3D";
 })(PrinterEnum || (PrinterEnum = {}));
 console.log(PrinterEnum.PRINTER_2);
+/*
+ * Задание 4.
+ * Реализуйте метод, который будет выводить информацию в
+ * консоль о создаваемом объекте типа Cat или Dog, применяя
+ * обобщенный тип, ограниченный типом Pet.
+ */
 class Pet {
     constructor() {
         this.name = 'Some pet';
