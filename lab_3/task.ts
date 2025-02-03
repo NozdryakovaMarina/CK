@@ -196,9 +196,36 @@ enum ClassCar {
 interface Car extends Vehicle {
     bodyType: BodyType;
     classCar: ClassCar;
-    printCar: () => string
+    startEngine(): void;
+    printCar: () => string;
 }
 
+
+function toUpperCase<T extends (...args: any[]) => string>(
+    target: any,
+    propertyName: string,
+    descriptor: TypedPropertyDescriptor<T>
+): TypedPropertyDescriptor<T> {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function (...args: any[]): string {
+    const result = originalMethod.apply(this, args);
+    if (typeof result === 'string') {
+      return result.toUpperCase();
+    }
+    return result;
+  } as T;
+
+  return descriptor;
+}
+
+function sealed(constructor: Function) {
+    console.log("sealed decorator");
+    Object.seal(constructor);
+    Object.seal(constructor.prototype);
+    }
+
+@sealed
 class CarI extends VehicleI implements Car {
     private _bodyType: BodyType;
     private _classCar: ClassCar;
@@ -225,10 +252,16 @@ class CarI extends VehicleI implements Car {
         this._classCar = value;
     }
 
+    startEngine() {
+        console.log("Engine started");
+    }
+
+    @toUpperCase
     printCar(): string {
         return 'Type body:' + this._bodyType + '\nClass car:' + this._classCar;
     }
 }
+
 
 interface Motorbike extends Vehicle {
     frameType: string;
@@ -341,3 +374,19 @@ vehicleStorage.addVehicle(motorbike3);
 console.log(carStorage.getAllVehicles());
 console.log(motorbikeStorage.getAllVehicles());
 console.log(vehicleStorage.getAllVehicles());
+
+// Проверка работоспособности с декоратором
+const car4 = new CarI("Toyota", "Camry", 2020, "VIN12345", "А123ВГ77", owner1, BodyType.Sedan, ClassCar.D);
+console.log("car1 object before properties manipulations:", car4)
+
+try {
+    car4.brand = "Lada";
+    console.log("car1.brand after changing:", car4.brand)
+
+} catch (e) {
+    console.log("Error changing property of object:", e);
+}
+
+console.log("car1 object after properties manipulations:", car4); 
+
+console.log(car1.printCar());

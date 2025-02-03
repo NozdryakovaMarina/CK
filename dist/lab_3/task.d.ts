@@ -88,8 +88,11 @@ declare enum ClassCar {
 interface Car extends Vehicle {
     bodyType: BodyType;
     classCar: ClassCar;
+    startEngine(): void;
     printCar: () => string;
 }
+declare function toUpperCase<T extends (...args: any[]) => string>(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T>;
+declare function sealed(constructor: Function): void;
 declare class CarI extends VehicleI implements Car {
     private _bodyType;
     private _classCar;
@@ -98,6 +101,7 @@ declare class CarI extends VehicleI implements Car {
     set bodyType(value: BodyType);
     get classCar(): ClassCar;
     set classCar(value: ClassCar);
+    startEngine(): void;
     printCar(): string;
 }
 interface Motorbike extends Vehicle {
@@ -144,3 +148,4 @@ declare const motorbike3: MotorbikeI;
 declare const carStorage: VehicleStorage<Car>;
 declare const motorbikeStorage: VehicleStorage<Motorbike>;
 declare const vehicleStorage: VehicleStorageI<Vehicle>;
+declare const car4: CarI;
