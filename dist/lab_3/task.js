@@ -256,6 +256,9 @@ var CarI = /** @class */ (function (_super) {
     CarI.prototype.printCar = function () {
         return 'Type body:' + this._bodyType + '\nClass car:' + this._classCar;
     };
+    CarI.prototype.getCarBodyAndClassInfo = function () {
+        return "\u0422\u0438\u043F \u043A\u0443\u0437\u043E\u0432\u0430: ".concat(this._bodyType, ", \u041A\u043B\u0430\u0441\u0441 \u0430\u0432\u0442\u043E\u043C\u043E\u0431\u0438\u043B\u044F: ").concat(this._classCar);
+    };
     __decorate([
         toUpperCase
     ], CarI.prototype, "printCar", null);
@@ -328,6 +331,20 @@ var VehicleStorageI = /** @class */ (function () {
     VehicleStorageI.prototype.save = function (vehicles) {
         this._vehicles.push(vehicles);
     };
+    VehicleStorageI.prototype.sortModelDesc = function () {
+        return this._vehicles.sort(function (a, b) {
+            if (a.model > b.model) {
+                return -1;
+            }
+            if (a.model < b.model) {
+                return 1;
+            }
+            return 0;
+        });
+    };
+    VehicleStorageI.prototype.findBrand = function (brand) {
+        return this._vehicles.filter(function (vehicle) { return vehicle.brand === brand; });
+    };
     return VehicleStorageI;
 }());
 var owner1 = new OwnerI("Иванов", "Иван", "Иванович", new Date("1990-05-15"), TypeDocument.Passport, "1234", "567890");
@@ -369,3 +386,15 @@ catch (e) {
 }
 console.log("car1 object after properties manipulations:", car4);
 console.log(car1.printCar());
+console.log("\n=== Sorted vehicles by model from Z to A ===\n");
+var sortVehicle = vehicleStorage.sortModelDesc();
+console.log(sortVehicle);
+//Тест метода findBrand()
+console.log("\n=== Vehicles with brand 'Toyota' ===\n");
+var toyotaVehicles = vehicleStorage.findBrand("Toyota");
+console.log(toyotaVehicles);
+//Тест getCarBodyAndClassInfo()
+console.log("\n=== Car body and class info ===\n");
+if (car1 instanceof CarI) {
+    console.log(car1.getCarBodyAndClassInfo());
+}

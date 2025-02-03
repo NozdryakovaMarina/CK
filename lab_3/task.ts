@@ -260,6 +260,10 @@ class CarI extends VehicleI implements Car {
     printCar(): string {
         return 'Type body:' + this._bodyType + '\nClass car:' + this._classCar;
     }
+
+    getCarBodyAndClassInfo(): string {
+        return `Тип кузова: ${this._bodyType}, Класс автомобиля: ${this._classCar}`;
+    }
 }
 
 
@@ -303,6 +307,8 @@ interface VehicleStorage<T extends Vehicle> {
     vehicles: T[];
     getAllVehicles(): T[];
     save(vehicles: T): void;
+    sortModelDesc(): T[];
+    findBrand(brand: string): T[];
 }
 
 class VehicleStorageI<T extends Vehicle> implements VehicleStorage<T> {
@@ -336,6 +342,22 @@ class VehicleStorageI<T extends Vehicle> implements VehicleStorage<T> {
 
     save(vehicles: T): void {
         this._vehicles.push(vehicles);
+    }
+
+    sortModelDesc(): T[] {
+        return this._vehicles.sort((a, b) => {
+            if (a.model > b.model) {
+                return -1;
+            }
+            if (a.model < b.model) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+
+    findBrand(brand: string): T[] {
+        return this._vehicles.filter(vehicle => vehicle.brand === brand);
     }
 }
 
@@ -390,3 +412,19 @@ try {
 console.log("car1 object after properties manipulations:", car4); 
 
 console.log(car1.printCar());
+
+//Тест метода sortModelDesc()
+console.log("\n=== Sorted vehicles by model from Z to A ===\n");
+const sortVehicle = vehicleStorage.sortModelDesc();
+console.log(sortVehicle);
+
+//Тест метода findBrand()
+console.log("\n=== Vehicles with brand 'Toyota' ===\n");
+const toyotaVehicles = vehicleStorage.findBrand("Toyota");
+console.log(toyotaVehicles);
+
+//Тест getCarBodyAndClassInfo()
+console.log("\n=== Car body and class info ===\n");
+if (car1 instanceof CarI) {
+    console.log(car1.getCarBodyAndClassInfo());
+}

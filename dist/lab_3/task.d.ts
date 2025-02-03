@@ -103,6 +103,7 @@ declare class CarI extends VehicleI implements Car {
     set classCar(value: ClassCar);
     startEngine(): void;
     printCar(): string;
+    getCarBodyAndClassInfo(): string;
 }
 interface Motorbike extends Vehicle {
     frameType: string;
@@ -124,6 +125,8 @@ interface VehicleStorage<T extends Vehicle> {
     vehicles: T[];
     getAllVehicles(): T[];
     save(vehicles: T): void;
+    sortModelDesc(): T[];
+    findBrand(brand: string): T[];
 }
 declare class VehicleStorageI<T extends Vehicle> implements VehicleStorage<T> {
     private _creationDate;
@@ -135,6 +138,8 @@ declare class VehicleStorageI<T extends Vehicle> implements VehicleStorage<T> {
     addVehicle(vehicle: T): void;
     getAllVehicles(): T[];
     save(vehicles: T): void;
+    sortModelDesc(): T[];
+    findBrand(brand: string): T[];
 }
 declare const owner1: OwnerI;
 declare const owner2: OwnerI;
@@ -149,3 +154,5 @@ declare const carStorage: VehicleStorage<Car>;
 declare const motorbikeStorage: VehicleStorage<Motorbike>;
 declare const vehicleStorage: VehicleStorageI<Vehicle>;
 declare const car4: CarI;
+declare const sortVehicle: Vehicle[];
+declare const toyotaVehicles: Vehicle[];
