@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
- import { Component } from '@angular/core';
- import { RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
  
  @Component({
    selector: 'app-page2',
@@ -9,5 +9,9 @@ import { CommonModule } from '@angular/common';
    styleUrl: './page2.component.css'
  })
  export class Page2Component {
- 
- }
+      constructor(private router: Router) {}
+    
+      goMain(){
+        this.router.navigateByUrl("/")
+      }
+}
