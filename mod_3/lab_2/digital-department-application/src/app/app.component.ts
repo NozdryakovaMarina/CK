@@ -10,4 +10,5 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'digital-department-application';
+  id: string | null = "0";
 }
