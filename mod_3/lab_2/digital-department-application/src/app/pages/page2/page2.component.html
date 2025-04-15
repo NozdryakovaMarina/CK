@@ -1,8 +1,10 @@
 <p>page2 works!</p>
 <h2>Список элементов</h2>
  
+<div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
  <div *ngFor="let item of items$ | async">
-     <!-- Display your product data here -->
-     {{ item.name }} - {{ item.price }}
-   </div>
+    {{ item.name }} - {{ item.price }}
+ </div>
 <button (click)="goMain()">На главную</button>
