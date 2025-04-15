@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ItemFormComponent } from '../../item-form/item-form.component';
+import { ItemFormTDComponent } from '../../item-form2/item-form2.component';
  
  interface Item {
    name: string;
@@ -11,7 +12,7 @@ import { ItemFormComponent } from '../../item-form/item-form.component';
  
  @Component({
    selector: 'app-page1',
-   imports: [CommonModule, RouterModule, ItemFormComponent],
+   imports: [CommonModule, RouterModule, ItemFormComponent, ItemFormTDComponent],
    templateUrl: './page1.component.html',
    styleUrl: './page1.component.css'
  })

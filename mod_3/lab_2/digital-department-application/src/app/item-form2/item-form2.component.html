@@ -1,0 +1,77 @@
+<form #itemForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="needs-validation">
+  <div class="form-group mb-3">
+    <label for="name" class="form-label fw-semibold">Название товара</label>
+    <input type="text" id="name" name="name" [(ngModel)]="model.name"
+           #name="ngModel" required minlength="3" maxlength="50"
+           class="form-control" 
+           [class.is-invalid]="submitted && name.invalid"
+           [class.is-valid]="submitted && name.valid"
+           placeholder="Введите название товара">
+    
+    <div *ngIf="submitted && name.invalid" class="invalid-feedback">
+      <div *ngIf="name.errors?.['required']" class="d-flex align-items-center">
+        <i class="bi bi-exclamation-circle me-2"></i> Поле обязательно для заполнения
+      </div>
+      <div *ngIf="name.errors?.['minlength']" class="d-flex align-items-center">
+        <i class="bi bi-x-circle me-2"></i> Минимальная длина: {{name.errors?.['minlength'].requiredLength}} символов
+      </div>
+      <div *ngIf="name.errors?.['maxlength']" class="d-flex align-items-center">
+        <i class="bi bi-x-circle me-2"></i> Максимальная длина: {{name.errors?.['maxlength'].requiredLength}} символов
+      </div>
+    </div>
+  </div>
+
+  <!-- Описание -->
+  <div class="form-group mb-3">
+    <label for="description" class="form-label fw-semibold">Описание</label>
+    <textarea id="description" name="description" [(ngModel)]="model.description"
+              #description="ngModel" required minlength="10" maxlength="200"
+              class="form-control" rows="3"
+              [class.is-invalid]="submitted && description.invalid"
+              [class.is-valid]="submitted && description.valid"
+              placeholder="Добавьте подробное описание товара"></textarea>
+    
+    <div *ngIf="submitted && description.invalid" class="invalid-feedback">
+      <div *ngIf="description.errors?.['required']" class="d-flex align-items-center">
+        <i class="bi bi-exclamation-circle me-2"></i> Поле обязательно для заполнения
+      </div>
+      <div *ngIf="description.errors?.['minlength']" class="d-flex align-items-center">
+        <i class="bi bi-x-circle me-2"></i> Минимальная длина: {{description.errors?.['minlength'].requiredLength}} символов
+      </div>
+      <div *ngIf="description.errors?.['maxlength']" class="d-flex align-items-center">
+        <i class="bi bi-x-circle me-2"></i> Максимальная длина: {{description.errors?.['maxlength'].requiredLength}} символов
+      </div>
+    </div>
+  </div>
+
+  <!-- Цена -->
+  <div class="form-group mb-4">
+    <label for="price" class="form-label fw-semibold">Цена</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text">$</span>
+      <input type="number" id="price" name="price" [(ngModel)]="model.price"
+             #price="ngModel" required min="0.01" max="10000" step="0.01"
+             class="form-control"
+             [class.is-invalid]="submitted && price.invalid"
+             [class.is-valid]="submitted && price.valid"
+             placeholder="0.00">
+      
+      <div *ngIf="submitted && price.invalid" class="invalid-feedback">
+        <div *ngIf="price.errors?.['required']" class="d-flex align-items-center">
+          <i class="bi bi-exclamation-circle me-2"></i> Укажите цену товара
+        </div>
+        <div *ngIf="price.errors?.['min']" class="d-flex align-items-center">
+          <i class="bi bi-x-circle me-2"></i> Минимальная цена: ${{price.errors?.['min'].min | number:'1.2-2'}}
+        </div>
+        <div *If="price.errors?.['max']" class="d-flex align-items-center">
+          <i class="bi bi-x-circle me-2"></i> Максимальная цена: ${{price.errors?.['max'].max | number:'1.2-2'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+    <i class="bi" [class.bi-check-circle]="itemForm.valid" [class.bi-exclamation-triangle]="!itemForm.valid"></i>
+    {{ itemForm.valid ? ' Сохранить товар' : ' Проверьте форму' }}
+  </button>
+</form>
