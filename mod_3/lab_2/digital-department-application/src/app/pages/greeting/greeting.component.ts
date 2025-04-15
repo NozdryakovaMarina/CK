@@ -1,12 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-greeting',
-  imports: [FormsModule],
-  templateUrl: './greeting.component.html',
-  styleUrl: './greeting.component.css'
-})
+   selector: 'app-greeting', 
+   imports: [FormsModule, CommonModule, RouterModule],
+   templateUrl: './greeting.component.html',
+   styleUrl: './greeting.component.css'
+ })
 export class GreetingComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, 
 AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy{
 
