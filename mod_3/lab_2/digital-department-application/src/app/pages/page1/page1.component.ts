@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ItemFormComponent } from '../../item-form/item-form.component';
+ 
+ interface Item {
+   name: string;
+   description: string;
+   price: number;
+ }
  
  @Component({
    selector: 'app-page1',
-   imports: [CommonModule, RouterModule],
+   imports: [CommonModule, RouterModule, ItemFormComponent],
    templateUrl: './page1.component.html',
    styleUrl: './page1.component.css'
  })
@@ -19,4 +26,14 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   goMain(){
     this.router.navigateByUrl("/")
   }
+
+  items: Item[] = [];
+ 
+   onFormSubmit(itemData: any) {
+     this.items.push({
+       name: itemData.name,
+       description: itemData.description,
+       price: parseFloat(itemData.price)
+     });
+   }
 }

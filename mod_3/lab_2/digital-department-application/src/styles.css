@@ -1,6 +1,7 @@
 body{
      background-color: rgb(176, 170, 182);
      color: rgb(35, 32, 32);
+     text-align: center;
  }
  
  a{
@@ -21,5 +22,14 @@ body{
  }
  
  h2{
-     color: indigo;
- }
+    color: rgb(121, 43, 177);
+}
+
+h1{
+    color: indigo;
+}
+
+input, textarea{
+    border: none;
+    margin: 5px 5px;
+}

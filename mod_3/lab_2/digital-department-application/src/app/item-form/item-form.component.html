@@ -1,0 +1,83 @@
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" novalidate class="needs-validation">
+    <div class="form-group mb-3">
+      <label for="name" class="form-label fw-semibold">Название товара</label>
+      <input 
+        type="text" 
+        id="name" 
+        formControlName="name" 
+        class="form-control" 
+        [ngClass]="{
+          'is-invalid': name?.invalid && (name?.dirty || name?.touched),
+          'is-valid': name?.valid
+        }"
+        placeholder="Введите название"
+      >
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="invalid-feedback">
+        <div *ngIf="name?.errors?.['required']">⚠️ Поле обязательно для заполнения</div>
+        <div *ngIf="name?.errors?.['minlength']">
+          ❌ Минимальная длина: {{name?.errors?.['minlength'].requiredLength}} символов
+        </div>
+        <div *ngIf="name?.errors?.['maxlength']">
+          ❌ Максимальная длина: {{name?.errors?.['maxlength'].requiredLength}} символов
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group mb-3">
+      <label for="description" class="form-label fw-semibold">Описание</label>
+      <textarea 
+        id="description" 
+        formControlName="description" 
+        class="form-control" 
+        [ngClass]="{
+          'is-invalid': description?.invalid && (description?.dirty || description?.touched),
+          'is-valid': description?.valid
+        }"
+        rows="3"
+        placeholder="Добавьте описание товара"
+      ></textarea>
+      <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="invalid-feedback">
+        <div *ngIf="description?.errors?.['required']">⚠️ Поле обязательно для заполнения</div>
+        <div *ngIf="description?.errors?.['minlength']">
+          ❌ Минимальная длина: {{description?.errors?.['minlength'].requiredLength}} символов
+        </div>
+        <div *ngIf="description?.errors?.['maxlength']">
+          ❌ Максимальная длина: {{description?.errors?.['maxlength'].requiredLength}} символов
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group mb-4">
+      <label for="price" class="form-label fw-semibold">Цена ($)</label>
+      <div class="input-group">
+        <span class="input-group-text">$</span>
+        <input 
+          type="number" 
+          id="price" 
+          formControlName="price" 
+          class="form-control" 
+          [ngClass]="{
+            'is-invalid': price?.invalid && (price?.dirty || price?.touched),
+            'is-valid': price?.valid
+          }"
+          step="0.01"
+          min="0.01"
+          placeholder="0.00"
+        >
+      </div>
+      <div *ngIf="price?.invalid && (price?.dirty || price?.touched)" class="invalid-feedback">
+        <div *ngIf="price?.errors?.['required']">⚠️ Укажите цену</div>
+        <div *ngIf="price?.errors?.['min']">❌ Минимальная цена: ${{price?.errors?.['min'].min | number:'1.2-2'}}</div>
+        <div *ngIf="price?.errors?.['max']">❌ Максимальная цена: ${{price?.errors?.['max'].max | number:'1.2-2'}}</div>
+      </div>
+    </div>
+  
+    <button 
+      type="submit" 
+      class="btn btn-primary w-100 py-2 fw-bold" 
+      [disabled]="!itemForm.valid"
+      [ngClass]="{'btn-success': itemForm.valid}"
+    >
+      {{ itemForm.valid ? '✅ Сохранить' : 'Заполните форму' }}
+    </button>
+  </form>
